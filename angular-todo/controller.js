@@ -28,7 +28,7 @@
     $scope.save = function() {
       $http.post('http://localhost:3000/todos', {todo: {text: $scope.todo.text}}).
       success(function(data){
-        $scope.todos.push(data);
+        $scope.todos.unshift(data);
         $scope.todo = '';
       });
     };

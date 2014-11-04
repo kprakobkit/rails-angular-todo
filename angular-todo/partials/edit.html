@@ -1,5 +1,9 @@
-<h1>edit</h1>
-<form ng-submit="save()">
-  <input type="text" ng-model="todo.text"/>
-  <input type="submit" value="save" size="30">
+<h1>Edit</h1>
+<form class="form-horizontal" ng-submit="save()">
+  <div class="form-group">
+    <div class="col-md-5">
+      <input class="form-control" type="text" ng-model="todo.text"/>
+    </div>
+  </div>
+  <button class="btn btn-default" type="submit" size="30">Save</button>
 </form>
