@@ -1,0 +1,11 @@
+<ul>
+  <li ng-repeat="todo in todos">
+  <a ng-href="#/edit/{{todo.id}}">{{todo.text}}</a>
+  <input type="checkbox" ng-model="todo.done">
+  <button ng-click="remove($index, todo.id)">Delete</button>
+  </li>
+</ul>
+<form ng-submit="save()">
+  <input type="text" ng-model="todo.text" size="30" placeholder="add new todohere">
+  <input type="submit" value="add">
+</form>
