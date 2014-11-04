@@ -3,8 +3,8 @@
 
   app.factory('TodosFactory', ['$http', function($http) {
     return {
-      getTodos: function() {
-        return $http.get('http://localhost:3000/todos');
+      getTodos: function(callback) {
+        return $http.get('http://localhost:3000/todos').success(callback);
       }
     };
   }]);
@@ -21,7 +21,7 @@
   });
 
   app.controller('TodoController', ['$scope', '$http', 'TodosFactory', function($scope, $http, TodosFactory) {
-    TodosFactory.getTodos().success(function(data) {
+    TodosFactory.getTodos(function(data) {
       $scope.todos = data;
     });
 
@@ -39,8 +39,8 @@
     }
   }]);
 
-  app.controller('TodoEditController', ['$scope', '$filter', '$http', '$routeParams', 'TodosFactory', function($scope, $filter, $http, $routeParams, TodosFactory) {
-    TodosFactory.getTodos().success(function(data) {
+  app.controller('TodoEditController', ['$scope', '$filter', '$http', '$routeParams', 'TodosFactory', '$location', function($scope, $filter, $http, $routeParams, TodosFactory, $location) {
+    TodosFactory.getTodos(function(data) {
       var todoId = $routeParams.todoId;
       $scope.todos = data;
       $scope.todo = $filter("filter")($scope.todos, {id:todoId})[0];
@@ -50,6 +50,7 @@
       $http.patch('http://localhost:3000/todos/' + $scope.todo.id , {todo: {text: $scope.todo.text}})
       .success(function(){
         console.log("success");
+        $location.path('/');
       });
     };
   }]);
