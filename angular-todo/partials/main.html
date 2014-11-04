@@ -1,20 +1,24 @@
-<h1 class="text-center">Todos</h1>
-<form class="form-horizontal" ng-submit="save()">
-  <div class="form-group">
-    <div class="col-md-5">
-      <input class="form-control" type="text" ng-model="todo.text" size="30" placeholder="add new todo here (hit enter to save)">
+<div class="animated fadeIn">
+  <h1 class="text-center">Another Todo App</h1>
+  <form class="form-horizontal" ng-submit="save()">
+    <div class="form-group">
+      <div class="col-md-5">
+        <div class="input-group">
+          <input class="form-control" type="text" ng-model="todo.text" size="30" placeholder="Add a Todo...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">+</button>
+          </span>
+        </div>
+      </div>
     </div>
-    <!-- <div class="col-sm-4"> -->
-    <!--   <input type="submit" value="add"> -->
-    <!-- </div> -->
-  </div>
-</form>
-<ul class="list-group">
-  <li class="list-group-item" ng-repeat="todo in todos">
-  <a ng-href="#/edit/{{todo.id}}">{{todo.text}}</a>
-  <!-- <input type="checkbox" ng-model="todo.done"> -->
-  <div class="pull-right">
-    <button ng-click="remove($index, todo.id)" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  </div>
-  </li>
-</ul>
+  </form>
+  <ul class="list-group">
+    <li class="list-group-item animate-repeat" ng-repeat="todo in todos" ng-mouseenter="show = !show" ng-mouseleave="show = !show">
+    <a ng-href="#/edit/{{todo.id}}">{{todo.text}}</a>
+    <!-- <input type="checkbox" ng-model="todo.done"> -->
+    <div class="pull-right">
+      <button ng-click="remove($index, todo.id)" type="button" ng-show="show" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    </div>
+    </li>
+  </ul>
+</div>

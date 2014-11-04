@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('todoApp',['ngRoute']);
+  var app = angular.module('todoApp',['ngRoute', 'ngAnimate']);
 
   app.factory('TodosFactory', ['$http', function($http) {
     return {
