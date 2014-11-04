@@ -2,9 +2,18 @@
   var app = angular.module('todoApp',['ngRoute', 'ngAnimate']);
 
   app.factory('TodosFactory', ['$http', function($http) {
+    var cachedData;
+
     return {
       getTodos: function(callback) {
-        return $http.get('http://localhost:3000/todos').success(callback);
+        if (cachedData) {
+          callback(cachedData);
+        } else {
+          $http.get('http://localhost:3000/todos').success(function(data) {
+            cachedData = data;
+            callback(data);
+          });
+        }
       }
     };
   }]);
